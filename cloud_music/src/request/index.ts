@@ -7,7 +7,7 @@ const {sessionId}=storeToRefs(user)
 
 // 创建axios实例
 const service = axios.create({
-    baseURL: '/',
+    // baseURL: '/',
     timeout: 10000,
     withCredentials: true, // 异步请求携带cookie
 	headers: {
