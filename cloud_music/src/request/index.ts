@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { storeToRefs } from 'pinia';
-import {useStore} from '../store/index'
+// import { storeToRefs } from 'pinia';
+// import {useStore} from '../store/index'
 
-const user = useStore();
-const {sessionId}=storeToRefs(user)
+// const user = useStore();
+// const {sessionId}=storeToRefs(user)
 
 // 创建axios实例
 const service = axios.create({
@@ -13,7 +13,7 @@ const service = axios.create({
 	headers: {
 		// 设置后端需要的传参类型
 		'Content-Type': 'application/json',
-		'token': `${sessionId}`,
+		// 'token': `${sessionId}`,
 		'X-Requested-With': 'XMLHttpRequest',
 	},
 })
@@ -36,3 +36,5 @@ service.interceptors.response.use(response =>{
 error=>{
     return Promise.reject(error)
 })
+
+export default service

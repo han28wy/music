@@ -12,6 +12,8 @@
     <!-- 推荐歌单 -->
 
     <!-- 个人推荐 -->
+
+    <!-- 切换菜单栏 -->
     <a-tabs v-model:activeKey="activeKey">
       <a-tab-pane key="1" tab="Tab 1">Content of Tab Pane 1</a-tab-pane>
       <a-tab-pane key="2" tab="Tab 2" force-render
@@ -24,10 +26,16 @@
 
 <script lang="ts">
 import { defineComponent, ref } from "vue";
+import { home_icon } from "../request/service";
+import { onMounted } from "vue";
+const icons = home_icon();
 export default defineComponent({
   setup() {
     const value = ref<string>("");
     const onChange = (current: number) => {};
+    onMounted(() => {
+      console.log("onMounted");
+    });
     return {
       value,
       activeKey: ref("1"),
