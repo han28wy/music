@@ -6,6 +6,10 @@ const routes:Array<RouteRecordRaw> = [
         path: '/',
         component: home
     },
+    {
+        path: '/home',
+        component: home
+    },
 ]
  
 const router = createRouter({
