@@ -25,17 +25,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 import { home_icon } from "../request/service";
-import { onMounted } from "vue";
-const icons = home_icon();
 export default defineComponent({
   setup() {
     const value = ref<string>("");
     const onChange = (current: number) => {};
+
     onMounted(() => {
       console.log("onMounted");
+      icons()
     });
+    async function icons():Promise<void> {
+      let iconRes = await home_icon();
+      console.log('文件里   ', iconRes);
+    };
     return {
       value,
       activeKey: ref("1"),

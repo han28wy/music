@@ -8,7 +8,7 @@ import axios from 'axios'
 // 创建axios实例
 const service = axios.create({
     // baseURL: '/',
-    timeout: 10000,
+    timeout: 5000,
     withCredentials: true, // 异步请求携带cookie
 	headers: {
 		// 设置后端需要的传参类型
@@ -29,9 +29,12 @@ error=>{
 
 // 添加响应拦截
 service.interceptors.response.use(response =>{
-    // if(response.data.recode == 301) {
-    // }
-    return response.data
+    if(response.data.recode !== 200) {
+        return Promise.reject('接口返回非200')
+    }else{
+        return response.data
+    }
+
 },
 error=>{
     return Promise.reject(error)

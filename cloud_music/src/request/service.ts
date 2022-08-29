@@ -4,4 +4,4 @@ import service from './index'
 
 
 // 首页-发现-圆形图标入口列表 /homepage/dragon/ball
-export const home_icon = ()=>service.get('/cloud/homepage/dragon/ball')
+export const home_icon = ()=>service.get('/homepage/dragon/ball').catch(err=>{console.log('service.ts 错误 ',err)})
