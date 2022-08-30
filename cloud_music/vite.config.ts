@@ -56,14 +56,22 @@ export default defineConfig({
       //   target:"https://netease-cloud-music-api-crete722p-hannah-bingo.vercel.app",
       //   changeOrigin: true,
       // },
+      // https://netease-cloud-music-lvz18kv49-han28wy.vercel.app
+      // https://netease-cloud-music-api-six-ivory.vercel.app
+      //   target:"https://netease-cloud-music-api-crete722p-hannah-bingo.vercel.app/",
        "/homepage":{
-        target:"https://netease-cloud-music-api-crete722p-hannah-bingo.vercel.app",
+        target:"https://netease-cloud-music-lvz18kv49-han28wy.vercel.app",
         changeOrigin: true,
       },
-      "/mock": {
+      "/search": {
+        target: "https://netease-cloud-music-lvz18kv49-han28wy.vercel.app",
+        changeOrigin: true,
+      },
+      "/m1": {
         target: "http://127.0.0.1:4523",
         changeOrigin: true,
       },
+
     },
   },
 })

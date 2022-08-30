@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { defineComponent, ref, onMounted } from "vue";
-import { home_icon } from "../request/service";
+import { home_icon ,gedanList} from "../request/service";
 import ListTree from "./components/listTree.vue";
 import cardBlock from "./components/cardBlock.vue";
 export default defineComponent({
@@ -33,6 +33,7 @@ export default defineComponent({
     });
     async function icons(): Promise<void> {
       let iconRes = await home_icon();
+      let list = await gedanList()
       console.log("文件里   ", iconRes);
     }
     return {
