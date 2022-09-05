@@ -11,7 +11,7 @@ export default defineConfig({
     Components({
       resolvers: [VantResolver()],
     }),
-],
+  ],
   base: "./", // 类似publicPath，'./'避免打包访问后空白页面，要加上，不然线上也访问不了
   // 引入第三方的配置
   optimizeDeps: {
@@ -56,11 +56,14 @@ export default defineConfig({
       //   target: "http://127.0.0.1:4523",
       //   changeOrigin: true,
       // },
-      // "/":{
-      //   target:"http://localhost:3000",
-      //   changeOrigin:true
+      // "/music": {
+      //   target: "http://localhost:3000",
+      //   changeOrigin: true
       // }
-
+      "/music": {
+        target: "http://blog.960919.xyz",
+        changeOrigin: true, // needed for virtual hosted sites,
+      }
     },
   },
 })

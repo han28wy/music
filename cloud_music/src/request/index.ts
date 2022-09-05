@@ -7,7 +7,7 @@ import axios from 'axios'
 
 // 创建axios实例
 const service = axios.create({
-    // baseURL: '/',
+    baseURL: '/music',
     timeout: 20000,
     withCredentials: true, // 异步请求携带cookie
 	headers: {

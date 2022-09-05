@@ -37,20 +37,17 @@
         style="background-color: white;padding: 0.2rem 0; border-bottom: 0.01rem solid"
       >
       <div style="display: flex;flex-direction: row;justify-content: space-between">
-        <div style="font-size: 8px;font-weight:bold">{{ block.uiElement.subTitle.title }}</div>
-        <div style="font-size: 8px;border-style:solid;border-width:0.02rem;border-radius:30%">{{ block.uiElement.button.text }}</div>
+        <div v-if="block.uiElement" style="font-size: 8px;font-weight:bold">{{ block.uiElement.subTitle.title }}</div>
+        <div v-if="block.uiElement && block.uiElement.button" style="font-size: 8px;border-style:solid;border-width:0.02rem;border-radius:30%">{{ block.uiElement.button.text }}</div>
       </div>
         <div style="display: flex; flex-direction: row">
           <div v-for="(single, index) in block.creatives" :key="index" @click="goToGedan()" style="display: flex;flex-direction: column;">
-            <!-- <div>{{ single.uiElement.image.imageUrl }}</div> -->
-              <div>{{ single.uiElement.image }}</div>
-                   <div>{{ getImage(single.uiElement.image) }}</div>
-               <!-- <div>{{ single.uiElement.image.get("imageUrl") }}</div> -->
-            <!-- <img
+            <img v-if="single.uiElement && single.uiElement.image"
               style="width: 2rem; margin: 0.1rem;border-radius: 20%;"
               :src="single.uiElement.image.imageUrl"
             />
-            <span style="font-size:6px">{{single.uiElement.mainTitle.title}}</span> -->
+            <img v-else src="../assets/default.png" style="width: 2rem; margin: 0.1rem;border-radius: 20%;"/>
+            <span v-if="single.uiElement && single.mainTitle" style="font-size:6px">{{single.uiElement.mainTitle.title}}</span>
           </div>
         </div>
       </div>
@@ -61,6 +58,7 @@
 <script setup lang="ts">
 import { defineComponent, ref, reactive, onMounted } from "vue";
 import { home_icon, homePage, banner } from "../request/service";
+import { blockList } from "./discoverApi"
 import { useRouter } from 'vue-router';
 
   const router = useRouter();
@@ -109,28 +107,35 @@ interface block_single {
 }
 
 interface block {
-  blockCode: "HOMEPAGE_BLOCK_PLAYLIST_RCMD";
-  showType: "HOMEPAGE_SLIDE_PLAYLIST";
+  blockCode: String;
+  showType: String;
   dislikeShowType: 0;
-  action: "orpheus://playlistCollection?referLog=HOMEPAGE_BLO...";
-  actionType: "orpheus";
+  action: String;
+  actionType: String;
   uiElement: {
     subTitle: {
-      title: "推荐歌单";
+      title: String;
     };
     button: {
-      action: "orpheus://playlistCollection?referLog=HOMEPAGE_BLO...";
-      actionType: "orpheus";
-      text: "更多";
+      action: String;
+      actionType: String;
+      text: String;
     };
   };
   creatives: [{}];
 }
 // var home_block = ref<block[]>([]);
-var home_block = reactive<block[]>([]);
+var home_block = ref<block[]>([]);
 const geBlockList = async () => {
+  // let res = blockList()
+  // console.log('结果接受打发打发   ', res)
   let res = await homePage();
-  home_block.value = res.data.blocks;
+  res.data.blocks.forEach((item)=>{
+    if(item.uiElement){
+      home_block.value.push(item)
+    }
+  })
+  console.log(666,home_block.value)
 };
 geBlockList();
 
@@ -147,9 +152,12 @@ const getBanner = async ()=>{
 getBanner()
 
 function getImage(val){
-  // console.log('999    ',val)
-  console.log(val.imageUrl)
+  console.log('   77     ', val)
+ if(val && val.imageUrl){
   return val.imageUrl
+ }else{
+  return ''
+ }
 }
 
 </script>
