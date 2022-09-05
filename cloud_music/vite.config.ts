@@ -52,25 +52,14 @@ export default defineConfig({
     open: true, // 在服务器启动时自动在浏览器中打开应用程序
     base: '/', //在 HTTP 请求中预留此文件夹，用于代理 Vite 作为子文件夹时使用。应该以 / 字符开始和结束。
     proxy: {
-      // "/cloud":{
-      //   target:"https://netease-cloud-music-api-crete722p-hannah-bingo.vercel.app",
+      // "/m1": {
+      //   target: "http://127.0.0.1:4523",
       //   changeOrigin: true,
       // },
-      // https://netease-cloud-music-lvz18kv49-han28wy.vercel.app
-      // https://netease-cloud-music-api-six-ivory.vercel.app
-      //   target:"https://netease-cloud-music-api-crete722p-hannah-bingo.vercel.app/",
-       "/homepage":{
-        target:"https://netease-cloud-music-lvz18kv49-han28wy.vercel.app",
-        changeOrigin: true,
-      },
-      "/search": {
-        target: "https://netease-cloud-music-lvz18kv49-han28wy.vercel.app",
-        changeOrigin: true,
-      },
-      "/m1": {
-        target: "http://127.0.0.1:4523",
-        changeOrigin: true,
-      },
+      // "/":{
+      //   target:"http://localhost:3000",
+      //   changeOrigin:true
+      // }
 
     },
   },

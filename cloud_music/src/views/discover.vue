@@ -42,11 +42,15 @@
       </div>
         <div style="display: flex; flex-direction: row">
           <div v-for="(single, index) in block.creatives" :key="index" @click="goToGedan()" style="display: flex;flex-direction: column;">
-            <img
+            <!-- <div>{{ single.uiElement.image.imageUrl }}</div> -->
+              <div>{{ single.uiElement.image }}</div>
+                   <div>{{ getImage(single.uiElement.image) }}</div>
+               <!-- <div>{{ single.uiElement.image.get("imageUrl") }}</div> -->
+            <!-- <img
               style="width: 2rem; margin: 0.1rem;border-radius: 20%;"
               :src="single.uiElement.image.imageUrl"
             />
-            <span style="font-size:6px">{{single.uiElement.mainTitle.title}}</span>
+            <span style="font-size:6px">{{single.uiElement.mainTitle.title}}</span> -->
           </div>
         </div>
       </div>
@@ -122,7 +126,8 @@ interface block {
   };
   creatives: [{}];
 }
-var home_block = ref<block[]>([]);
+// var home_block = ref<block[]>([]);
+var home_block = reactive<block[]>([]);
 const geBlockList = async () => {
   let res = await homePage();
   home_block.value = res.data.blocks;
@@ -140,6 +145,12 @@ const getBanner = async ()=>{
   bannerList.value = res.banners
 }
 getBanner()
+
+function getImage(val){
+  // console.log('999    ',val)
+  console.log(val.imageUrl)
+  return val.imageUrl
+}
 
 </script>
 

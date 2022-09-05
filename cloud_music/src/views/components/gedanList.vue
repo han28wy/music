@@ -59,15 +59,15 @@ interface gedan {
 
 var songList = ref<song[]>([]);
 var gedanObj = ref<gedan>();
-const getDetail = async () => {
-  let res = await gedanDetail();
-  res.playlist.tracks.forEach(i =>{
-    songList.push(i.ar)
-  });
-  gedanObj = res.playList;
-  console.log('555555     ',songList)
-};
-getDetail();
+// const getDetail = async () => {
+//   let res = await gedanDetail();
+//   res.playlist.tracks.forEach(i =>{
+//     songList.push(i.ar)
+//   });
+//   gedanObj = res.playList;
+//   console.log('555555     ',songList)
+// };
+// getDetail();
 
 // export default defineComponent({
 //   components: { row },
