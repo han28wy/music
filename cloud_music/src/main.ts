@@ -6,7 +6,9 @@ import {createPinia} from 'pinia'
 import Antd from 'ant-design-vue'
 import 'ant-design-vue/dist/antd.css'
 import 'amfe-flexible'
+import { useRouter } from 'vue-router';
 
+// const $router = useRouter();
 // import "vant/lib/index.css"
 
 // import { Tab, Tabs } from 'vant';
@@ -14,3 +16,4 @@ import 'amfe-flexible'
 // Vant 桌面端适配
 // import '@vant/touch-emulator'
 createApp(App).use(router).use(createPinia).use(Antd).mount('#app')
+App.config.glocalProperties.$router = useRouter()

@@ -1,6 +1,7 @@
 import  { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import home from "@/views/Home.vue";
 import gedanList from "@/views/components/gedanList.vue"
+import login from "@/views/login/index.vue"
 
 const routes:Array<RouteRecordRaw> = [
     {
@@ -14,6 +15,10 @@ const routes:Array<RouteRecordRaw> = [
     {
         path: '/gedanList',
         component: gedanList
+    },
+    {
+        path: '/login',
+        component: login
     },
 ]
  

@@ -64,3 +64,5 @@ export const gedanDetail = ()=>service.get('/playlist/detail')
 
 // 首页-发现-圆形图标入口列表 /homepage/dragon/ball
 export const home_icon = ()=>service.get('/homepage/dragon/ball').catch(err=>{console.log('service.ts 错误 ',err)})
+
+// export const login = ()=>service.get('/login/cellphone')

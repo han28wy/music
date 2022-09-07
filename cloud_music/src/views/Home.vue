@@ -1,5 +1,6 @@
 <template>
   <div class="tab_btm">
+    <div @click="handleClick">33333</div>
     <!-- 切换菜单栏 -->
     <!-- <van-button type="primary">按钮</van-button> -->
     <a-tabs
@@ -20,14 +21,21 @@
 
 <script lang="ts">
 // import 'vant/es/button/style/index';
-import { defineComponent, ref, onMounted } from "vue";
+import { defineComponent, getCurrentInstance, ref, onMounted } from "vue";
 import discover from "./discover.vue";
 export default defineComponent({
   components: {
     discover 
     },
   setup() {
+
+    const { proxy }: any = getCurrentInstance();
+
     const value = ref<string>("");
+    function handleClick(){
+      console.log(77667766)
+      proxy.$router.push('/login')
+    }
 
     onMounted(() => {
       console.log("onMounted");
@@ -35,8 +43,10 @@ export default defineComponent({
     return {
       value,
       activeKey: ref("1"),
+      handleClick
     };
   },
+
 });
 </script>
 
