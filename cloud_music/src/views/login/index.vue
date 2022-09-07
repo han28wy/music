@@ -26,7 +26,7 @@ export default defineComponent({
         phone:phone.value,
         password:password.value
       }
-      service.get('/login/cellphone?', {params})
+      service.get('/login/cellphone?', {params}) 
     }
 
     return {
