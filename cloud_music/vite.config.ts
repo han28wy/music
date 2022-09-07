@@ -2,14 +2,43 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import postCssPxToRem from 'postcss-pxtorem'
 import path from 'path'
-import Components from "unplugin-vue-components/vite";
-import { VantResolver } from "unplugin-vue-components/resolvers";
+import Components from 'unplugin-vue-components/vite'
+import AutoImport from 'unplugin-auto-import/vite'
+import { VantResolver } from 'unplugin-vue-components/resolvers'
+import styleImport, { VantResolve } from 'vite-plugin-style-import'
 
 export default defineConfig({
   plugins: [
     vue(),
+    styleImport({
+      resolves: [VantResolve()],
+      libs: [{
+        libraryName: 'vant',
+        esModule: true,
+        resolveStyle: name => `../es/${name}/style`
+      }]
+    },
+    ),
+    AutoImport({
+      include: [
+        /\.[tj]sx?$/,
+        /\.vue$/,
+        /\.vue\?vue/,
+      ],
+      imports: [
+        'vue',
+        'vue-router',
+        'vitest'
+      ],
+      dts: "src/auto-import.d.ts",
+      eslintrc: {
+        enabled: true
+      }
+    }),
     Components({
+      dts: true,
       resolvers: [VantResolver()],
+      types: []
     }),
   ],
   base: "./", // 类似publicPath，'./'避免打包访问后空白页面，要加上，不然线上也访问不了
@@ -20,7 +49,12 @@ export default defineConfig({
   resolve: {
     extensions: [".ts", ".vue", ".json", ".less", "scss", "jsx"],
     alias: {
-      "@": path.resolve("src")
+      "@": path.resolve("src"),
+      // 注意一定不要随意命名，a b c这样的，项目的目录也不能为关键字保留字！！
+      "comp": path.resolve("src/components"),
+      // 配置图片要这样引用
+      "/img": "./src/assets",
+
     }
 
   },

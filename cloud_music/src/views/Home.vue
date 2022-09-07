@@ -1,7 +1,12 @@
 <template>
-  <div >
+  <div class="tab_btm">
     <!-- 切换菜单栏 -->
-    <a-tabs v-model:activeKey="activeKey" tabPosition="bottom" tabBarStyle="tabstyle">
+    <!-- <van-button type="primary">按钮</van-button> -->
+    <a-tabs
+      v-model:activeKey="activeKey"
+      tabPosition="bottom"
+      tabBarStyle="tabstyle"
+    >
       <a-tab-pane key="1" tab="发现"><discover /></a-tab-pane>
       <a-tab-pane key="2" tab="博客" force-render
         >Content of Tab Pane 2</a-tab-pane
@@ -14,10 +19,13 @@
 </template>
 
 <script lang="ts">
+// import 'vant/es/button/style/index';
 import { defineComponent, ref, onMounted } from "vue";
-import discover from "./discover.vue"
+import discover from "./discover.vue";
 export default defineComponent({
-  components:{ discover },
+  components: {
+    discover 
+    },
   setup() {
     const value = ref<string>("");
 
@@ -32,20 +40,21 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style scoped lang="less">
 /* For demo */
-.btm{
+.btm {
   /* position: fixed; */
 }
 .tabstyle {
-    position: fixed;
-    display: inline-block;
-    display: flex;
-    flex: auto;
-    align-self: stretch;
-    overflow: hidden;
-    white-space: nowrap;
-    bottom: 0;
-    transform: translate(0);
-    }
+  position: fixed;
+  bottom: 0;
+  background: white;
+  width: 100%;
+}
+.ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap {
+    position: fixed !important;
+    bottom: 0 !important;
+    background: white;
+    width: 100%;
+  }
 </style>

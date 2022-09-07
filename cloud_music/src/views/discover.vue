@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-input style="margin:0.2rem 0;border-radius: 30%;" placeholder="Basic usage" />
+    <a-input style="margin:0.2rem 0;border-radius:1rem;" placeholder="Basic usage" />
     <a-carousel autoplay style="height:3rem;">
     <div v-for="ban in bannerList" :key="ban.bannerId">
     <img style="height:3rem;width: 100%;" :src="ban.pic" />
@@ -30,18 +30,18 @@
       </div>
     </div>
     <!-- 推荐歌单 -->
-    <div style="background-color: lightblue;">
+    <div style="background-color: white;">
       <div
         v-for="(block, index) in home_block"
         :key="index"
-        style="background-color: white;padding: 0.2rem 0; border-bottom: 0.01rem solid"
+        style="background-color: white;margin: 0.3rem 0; border-top: 0.01rem solid"
       >
-      <div style="display: flex;flex-direction: row;justify-content: space-between">
-        <div v-if="block.uiElement" style="font-size: 8px;font-weight:bold">{{ block.uiElement.subTitle.title }}</div>
-        <div v-if="block.uiElement && block.uiElement.button" style="font-size: 8px;border-style:solid;border-width:0.02rem;border-radius:30%">{{ block.uiElement.button.text }}</div>
+      <div style="display: flex;flex-direction: row;justify-content: space-between; padding-top:0.1rem">
+        <div v-if="block.uiElement" style="font-size: 0.4rem;font-weight:bold">{{ block.uiElement.subTitle.title }}</div>
+        <div v-if="block.uiElement && block.uiElement.button" style="font-size: 8px;border-width:0.02rem;border-radius:30%">{{ block.uiElement.button.text }}</div>
       </div>
-        <div style="display: flex; flex-direction: row">
-          <div v-for="(single, index) in block.creatives" :key="index" @click="goToGedan()" style="display: flex;flex-direction: column;">
+        <div style="display: flex; flex-direction: row; overflow: auto;">
+          <div v-for="(single, index) in block.creatives" :key="index" @click="goToGedan(single)" style="display: flex;flex-direction: column">
             <img v-if="single.uiElement && single.uiElement.image"
               style="width: 2rem; margin: 0.1rem;border-radius: 20%;"
               :src="single.uiElement.image.imageUrl"
@@ -63,7 +63,8 @@ import { useRouter } from 'vue-router';
 
   const router = useRouter();
 
-function goToGedan(){
+function goToGedan(val){
+  console.log('点击ddddd    ',val)
   router.push('/gedanList')
 }
 
