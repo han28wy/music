@@ -136,7 +136,6 @@ const geBlockList = async () => {
       home_block.value.push(item)
     }
   })
-  console.log(666,home_block.value)
 };
 geBlockList();
 

@@ -33,8 +33,7 @@ export default defineComponent({
 
     const value = ref<string>("");
     function handleClick(){
-      console.log(77667766)
-      proxy.$router.push('/login')
+      proxy.$router.push('/my')
     }
 
     onMounted(() => {

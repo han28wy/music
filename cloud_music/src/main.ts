@@ -15,5 +15,5 @@ import { useRouter } from 'vue-router';
 
 // Vant 桌面端适配
 // import '@vant/touch-emulator'
-createApp(App).use(router).use(createPinia).use(Antd).mount('#app')
+createApp(App).use(router).use(createPinia()).use(Antd).mount('#app')
 App.config.glocalProperties.$router = useRouter()
